@@ -12,6 +12,7 @@ import {
 } from 'native-base';
 import { base, firebase } from '../api';
 import WebsiteCard from './WebsiteCard';
+import { PREVIEW_DOMAIN } from '../constants';
 
 class WebsitesList extends Component {
   state = {
@@ -38,7 +39,7 @@ class WebsitesList extends Component {
     });
   }
 
-  viewWebsite = website => WebBrowser.openBrowserAsync(`http://oncosmos.herokuapp.com/${website.slug}`);
+  viewWebsite = website => WebBrowser.openBrowserAsync(`${PREVIEW_DOMAIN}${website.slug}`);
   editWebsite = website => this.props.navigate('EditLayout', { websiteId: website.id });
   websiteSettings = website => this.props.navigate('WebsiteSettings', { website });
 

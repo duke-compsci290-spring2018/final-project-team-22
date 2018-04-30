@@ -16,7 +16,12 @@ const WebsiteCard = ({ website }) => (
     elevation: 5,
  }}
   >
-    <Image style={{ flex: 1, borderRadius: 4 }} source={{ uri: website.previewImage }} />
+    {
+      website.previewImage ?
+        <Image style={{ flex: 1, borderRadius: 4 }} source={{ uri: website.previewImage }} />
+      :
+        <View style={{ flex: 1, borderRadius: 4, color: '#ccc' }} />
+    }
   </View>
 );
 
