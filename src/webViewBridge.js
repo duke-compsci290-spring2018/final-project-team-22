@@ -13,11 +13,10 @@ window.webViewBridge = {
       };
 
       const msg = JSON.stringify(msgObj);
-      // alert(`sending message ${msg}`);
 
       promises[id] = { resolve, reject };
 
-      window.postMessage(msg);
+      window.postMessage(msg, '*');
     });
   },
 };

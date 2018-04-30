@@ -16,7 +16,7 @@ class SavingWebsiteScreen extends Component {
   };
 
   componentDidMount() {
-    setTimeout(this.capturePreview, 2500);
+    setTimeout(this.capturePreview, 3000);
   }
 
   capturePreview = async () => {
@@ -37,7 +37,7 @@ class SavingWebsiteScreen extends Component {
         previewImage,
       });
 
-      this.props.navigation.navigate('WebsiteList');
+      this.props.navigation.navigate('Home');
     } catch (err) {
       console.error(err);
     }

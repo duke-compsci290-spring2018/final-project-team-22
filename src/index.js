@@ -21,15 +21,9 @@ function init() {
   );
 }
 
-async function initEditMode() {
-  const { data } = await window.webViewBridge.send('init');
-  window.Website = { layout: data.layout };
-  init();
-}
-
 function checkEditModeReady() {
-  if (postMessage.length === 1) initEditMode();
-  else setTimeout(checkEditModeReady, 100);
+  if (window.Website != null) init();
+  else setTimeout(checkEditModeReady, 500);
 }
 
 async function loadWebsite() {
@@ -56,7 +50,7 @@ async function loadWebsite() {
 }
 
 if (editMode) {
-  window.onload = checkEditModeReady;
+  checkEditModeReady();
 } else {
   loadWebsite();
 }

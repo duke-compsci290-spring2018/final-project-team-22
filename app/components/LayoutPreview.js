@@ -10,8 +10,13 @@ type Props = {
 }
 
 class LayoutPreview extends Component<Props> {
-  state = {
-    currentMessageId: null,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentMessageId: null,
+      initLayout: props.layout,
+    };
   }
 
   componentDidUpdate(prevProps) {
@@ -43,39 +48,28 @@ class LayoutPreview extends Component<Props> {
     this.webView.postMessage(msg);
   }
 
-  handleInitMessage = ({ id }) => {
-    this.respondToMessage(id, { layout: this.props.layout });
-  }
+  handleMessage = (event) => {
+    const message = JSON.parse(event.nativeEvent.data);
+    console.info('Message from Browser', message);
+    const { id, data: { block } } = message;
 
-  handleEditBlockMessage = ({ id, data: { block } }) => {
     this.setState({ currentMessageId: id });
     this.props.onEdit(block);
   }
 
-  handleMessage = (event) => {
-    const message = JSON.parse(event.nativeEvent.data);
-    console.info('Message from Browser', message);
-
-    switch (message.type) {
-      case 'init':
-        this.handleInitMessage(message);
-        break;
-      case 'editBlock':
-        this.handleEditBlockMessage(message);
-        break;
-      default:
-        console.error(`No Handler for Event: ${message.type}`);
-    }
-  }
-
   render() {
+    const { initLayout } = this.state;
+    const injectLayout = `window.Website = ${JSON.stringify({ layout: initLayout })};`;
+
     return (
       <View style={{ flex: 1 }}>
         <WebView
           ref={el => (this.webView = el)}
           onMessage={this.handleMessage}
+          // source={{ uri: 'http://localhost:3000/edit' }}
           source={{ uri: `${PREVIEW_DOMAIN}/edit` }}
           style={{ flex: 1 }}
+          injectedJavaScript={injectLayout}
         />
       </View>
     );

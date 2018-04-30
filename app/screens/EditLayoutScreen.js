@@ -32,7 +32,7 @@ class EditLayoutScreen extends Component {
     }
   }
 
-  handleCancel = () => this.props.navigation.navigate('WebsiteList');
+  handleCancel = () => this.props.navigation.navigate('Home');
 
   handleSave = async ({ layout }) => {
     const website = {
