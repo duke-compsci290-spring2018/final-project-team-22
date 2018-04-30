@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "react/jsx-filename-extension": 0,
+    "no-return-assign": [2, "except-parens"],
+    "react/prop-types": [2, { "skipUndeclared": true }],
+    "jsx-quotes": [2, "prefer-single"],
+    "react/prefer-stateless-function": 0,
+    "no-use-before-define": ["error", { "variables": false }],
+    "no-nested-ternary": 0
+  },
+  "plugins": [
+    "react-native"
+  ]
+}
