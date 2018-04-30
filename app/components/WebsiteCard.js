@@ -20,7 +20,7 @@ const WebsiteCard = ({ website }) => (
       website.previewImage ?
         <Image style={{ flex: 1, borderRadius: 4 }} source={{ uri: website.previewImage }} />
       :
-        <View style={{ flex: 1, borderRadius: 4, color: '#ccc' }} />
+        <View style={{ flex: 1, borderRadius: 4, backgroundColor: '#ccc' }} />
     }
   </View>
 );

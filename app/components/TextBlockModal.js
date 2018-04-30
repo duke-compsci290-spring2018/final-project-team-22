@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 4,
     borderColor: 'rgba(0, 0, 0, 0.1)',
-    height: 400,
+    height: 350,
   },
   header: {
     backgroundColor: '#F8F8F8',

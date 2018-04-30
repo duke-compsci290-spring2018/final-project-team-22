@@ -63,7 +63,7 @@ class SavingWebsiteScreen extends Component {
         >
           <WebView
             ref={el => (this.webView = el)}
-            source={{ uri: `${PREVIEW_DOMAIN}/${website.slug}` }}
+            source={{ uri: `${PREVIEW_DOMAIN}${website.slug}` }}
             style={{ flex: 1 }}
           />
           <View

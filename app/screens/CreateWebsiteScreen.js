@@ -15,13 +15,13 @@ const { Form } = t.form;
 
 const Website = t.struct({
   name: t.String,
-  subdomain: t.String,
+  slug: t.String,
   showInExplore: t.Boolean,
 });
 
 const options = {
   fields: {
-    subdomain: {
+    slug: {
       autoCapitalize: 'none',
     },
   },
@@ -37,14 +37,15 @@ class CreateWebsiteScreen extends Component {
     if (!value) return;
 
     const user = firebase.auth().currentUser;
-    const { name, subdomain, showInExplore } = value;
+    const { name, slug, showInExplore } = value;
 
     try {
       await base.addToCollection('Websites', {
         name,
-        subdomain,
+        slug,
         showInExplore,
         owner: user.uid,
+        layout: [],
       });
 
       this.props.navigation.navigate('Home');
