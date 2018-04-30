@@ -66,8 +66,8 @@ class LayoutPreview extends Component<Props> {
         <WebView
           ref={el => (this.webView = el)}
           onMessage={this.handleMessage}
-          // source={{ uri: 'http://localhost:3000/edit' }}
-          source={{ uri: `${PREVIEW_DOMAIN}/edit` }}
+          source={{ uri: 'http://localhost:3000/edit' }}
+          // source={{ uri: `${PREVIEW_DOMAIN}/edit` }}
           style={{ flex: 1 }}
           injectedJavaScript={injectLayout}
         />

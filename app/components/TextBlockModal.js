@@ -12,6 +12,7 @@ import {
   Item,
   Label,
   Input,
+  Content,
 } from 'native-base';
 import Modal from 'react-native-modal';
 
@@ -64,76 +65,78 @@ class EditTextBlockModal extends Component<Props> {
             </Segment>
           </View>
           <View style={{ flex: 1, padding: 10 }}>
-            { tabIndex === 0 &&
-              <Textarea
-                style={{
-                  fontSize: 20,
-                  flex: 1,
-                  borderWidth: 0,
-                }}
-                placeholder='Write here'
-                value={block.text}
-                onChangeText={this.handleChange('text')}
-              />
-            }
+            <Content>
+              { tabIndex === 0 &&
+                <Textarea
+                  style={{
+                    fontSize: 20,
+                    flex: 1,
+                    borderWidth: 0,
+                  }}
+                  placeholder='Write here'
+                  value={block.text}
+                  onChangeText={this.handleChange('text')}
+                />
+              }
 
-            {
-              tabIndex === 1 &&
-              <Form>
-                <Item stackedLabel>
-                  <Label>Text Style</Label>
-                  <Picker
-                    mode='dropdown'
-                    iosHeader='Text Style'
-                    headerBackButtonText='Done'
-                    iosIcon={<Icon name='ios-arrow-down-outline' />}
-                    selectedValue={block.style}
-                    onValueChange={this.handleChange('style')}
-                  >
-                    <Picker.Item label='Header 1' value='h1' />
-                    <Picker.Item label='Header 2' value='h2' />
-                    <Picker.Item label='Header 3' value='h3' />
-                    <Picker.Item label='Body' value='body' />
-                  </Picker>
-                </Item>
-                <Item stackedLabel>
-                  <Label>Text Color</Label>
-                  <Input
-                    value={block.color}
-                    onChangeText={this.handleChange('color')}
-                  />
-                </Item>
-                <Item stackedLabel>
-                  <Label>Text Alignment</Label>
-                  <Picker
-                    mode='dropdown'
-                    iosHeader='Text Alignment'
-                    headerBackButtonText='Done'
-                    iosIcon={<Icon name='ios-arrow-down-outline' />}
-                    selectedValue={block.alignment}
-                    onValueChange={this.handleChange('alignment')}
-                  >
-                    <Picker.Item label='Left' value='left' />
-                    <Picker.Item label='Center' value='center' />
-                    <Picker.Item label='Right' value='right' />
-                  </Picker>
-                </Item>
-              </Form>
-            }
+              {
+                tabIndex === 1 &&
+                <Form>
+                  <Item stackedLabel>
+                    <Label>Text Style</Label>
+                    <Picker
+                      mode='dropdown'
+                      iosHeader='Text Style'
+                      headerBackButtonText='Done'
+                      iosIcon={<Icon name='ios-arrow-down-outline' />}
+                      selectedValue={block.style}
+                      onValueChange={this.handleChange('style')}
+                    >
+                      <Picker.Item label='Header 1' value='h1' />
+                      <Picker.Item label='Header 2' value='h2' />
+                      <Picker.Item label='Header 3' value='h3' />
+                      <Picker.Item label='Body' value='body' />
+                    </Picker>
+                  </Item>
+                  <Item stackedLabel>
+                    <Label>Text Color</Label>
+                    <Input
+                      value={block.color}
+                      onChangeText={this.handleChange('color')}
+                    />
+                  </Item>
+                  <Item stackedLabel>
+                    <Label>Text Alignment</Label>
+                    <Picker
+                      mode='dropdown'
+                      iosHeader='Text Alignment'
+                      headerBackButtonText='Done'
+                      iosIcon={<Icon name='ios-arrow-down-outline' />}
+                      selectedValue={block.alignment}
+                      onValueChange={this.handleChange('alignment')}
+                    >
+                      <Picker.Item label='Left' value='left' />
+                      <Picker.Item label='Center' value='center' />
+                      <Picker.Item label='Right' value='right' />
+                    </Picker>
+                  </Item>
+                </Form>
+              }
 
-            {
-              tabIndex === 2 &&
-              <Form>
-                <Item stackedLabel>
-                  <Label>Add a Link</Label>
-                  <Input
-                    keyboardType='url'
-                    value={block.href}
-                    onChangeText={this.handleChange('href')}
-                  />
-                </Item>
-              </Form>
-            }
+              {
+                tabIndex === 2 &&
+                <Form>
+                  <Item stackedLabel>
+                    <Label>Add a Link</Label>
+                    <Input
+                      keyboardType='url'
+                      value={block.href}
+                      onChangeText={this.handleChange('href')}
+                    />
+                  </Item>
+                </Form>
+              }
+            </Content>
           </View>
           <View style={styles.buttonsContainer}>
             <Button style={styles.button} block light onPress={this.props.onCancel}>

@@ -37,6 +37,13 @@ class App extends Component<Props> {
     return (
       <div className={classes('container', { 'edit-mode': this.props.editMode })}>
         {
+          layout.length === 0 && (
+            <div className='no-content'>
+              <h3>No Content</h3>
+            </div>
+          )
+        }
+        {
           layout.map((block) => {
             switch (block.type) {
               case 'Text':
