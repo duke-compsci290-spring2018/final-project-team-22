@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import { WebBrowser } from 'expo';
 import {
   Container,
   Content,
-  List,
-  ListItem,
+  Text,
 } from 'native-base';
+import Masonry from 'react-native-masonry';
 import { base } from '../api';
-import WebsiteCard from '../components/WebsiteCard';
 import { PREVIEW_DOMAIN } from '../constants';
 
 class ExploreScreen extends Component {
@@ -44,19 +43,32 @@ class ExploreScreen extends Component {
     const { websites } = this.state;
     return (
       <Container>
-        <Content>
-          <List
-            dataArray={websites}
-            renderRow={website => (
-              <ListItem style={{ height: 500 }}>
-                <TouchableOpacity
-                  onPress={() => this.viewWebsite(website)}
-                  style={{ flex: 1, marginVertical: 50, alignItems: 'center' }}
-                >
-                  <WebsiteCard website={website} />
-                </TouchableOpacity>
-              </ListItem>
-            )}
+        <Content style={{ padding: 16 }}>
+          <Masonry
+            bricks={
+              websites.map(website => ({
+                uri: website.previewImage || 'http://via.placeholder.com/300x400/2f95dc/ffffff?text=New+Website',
+                data: { website },
+                onPress: data => this.viewWebsite(data.website),
+                renderFooter: data => (
+                  <View
+                    key={data.website.id}
+                    style={{
+                      backgroundColor: 'white',
+                      padding: 8,
+                      borderTopColor: '#ccc',
+                      borderTopWidth: 1,
+                    }}
+                  >
+                    <Text
+                      style={{ fontWeight: '600', fontSize: 14, textAlign: 'center' }}
+                    >
+                      {data.website.name}
+                    </Text>
+                  </View>
+                ),
+              }))
+            }
           />
         </Content>
       </Container>
